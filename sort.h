@@ -5,6 +5,17 @@
 #include <stdlib.h>
 
 /**
+ * enum bool - Enumeration of Boolean values.
+ * @false: Equals 0.
+ * @true: Equals 1.
+ */
+typedef enum bool
+{
+	false = 0,
+	true
+} bool;
+
+/**
  * struct listint_s - Doubly linked list node
  *
  * @n: Integer stored in the node
@@ -24,6 +35,10 @@ void bubble_sort(int *array, size_t size);
 void insertion_sort_list(listint_t **list);
 void selection_sort(int *array, size_t size);
 void quick_sort(int *array, size_t size);
+<<<<<<< HEAD
 void counting_sort(int *array, size_t size);
+=======
+void cocktail_sort_list(listint_t **list);
+>>>>>>> 1d7b74d444bc8528aa1c5d5473c0f88ea36ede77
 
 #endif
