@@ -1,11 +1,11 @@
 #include "sort.h"
 
 /**
- * swap_ints - Swap two integers in an array.
+ * swp - Swap two integers in an array.
  * @i: The first integer to swap.
  * @j: The second integer to swap.
  */
-void swap_ints(int *i, int *j)
+void swp(int *i, int *j)
 {
 	int temp;
 
@@ -15,7 +15,7 @@ void swap_ints(int *i, int *j)
 }
 
 /**
- * lomuto_partition - Order a subset of an array of integers according to
+ * part - Order a subset of an array of integers according to
  *                    the lomuto partition scheme (last element as pivot).
  * @arr: The array of integers.
  * @size: The size of the array.
@@ -24,7 +24,7 @@ void swap_ints(int *i, int *j)
  *
  * Return: The final partition index.
  */
-int lomuto_partition(int *arr, size_t size, int l, int r)
+int part(int *arr, size_t size, int l, int r)
 {
 	int *piv, abv, bel;
 
@@ -35,7 +35,7 @@ int lomuto_partition(int *arr, size_t size, int l, int r)
 		{
 			if (abv < bel)
 			{
-				swap_ints(arr + bel, arr + abv);
+				swp(arr + bel, arr + abv);
 				print_array(arr, size);
 			}
 			abv++;
@@ -44,7 +44,7 @@ int lomuto_partition(int *arr, size_t size, int l, int r)
 
 	if (arr[abv] > *piv)
 	{
-		swap_ints(arr + abv, piv);
+		swp(arr + abv, piv);
 		print_array(arr, size);
 	}
 
@@ -52,7 +52,7 @@ int lomuto_partition(int *arr, size_t size, int l, int r)
 }
 
 /**
- * lomuto_sort - Implement the quicksort algorithm through recursion.
+ * srt - Implement the quicksort algorithm through recursion.
  * @arr: An array of integers to sort.
  * @size: The size of the array.
  * @l: The starting index of the array partition to order.
@@ -60,15 +60,15 @@ int lomuto_partition(int *arr, size_t size, int l, int r)
  *
  * Description: Uses the Lomuto partition scheme.
  */
-void lomuto_sort(int *arr, size_t size, int l, int r)
+void srt(int *arr, size_t size, int l, int r)
 {
 	int a;
 
 	if (r - l > 0)
 	{
-		a = lomuto_partition(arr, size, l, r);
-		lomuto_sort(arr, size, l, a - 1);
-		lomuto_sort(arr, size, a + 1, r);
+		a = part(arr, size, l, r);
+		srt(arr, size, l, a - 1);
+		srt(arr, size, a + 1, r);
 	}
 }
 
@@ -86,5 +86,5 @@ void quick_sort(int *arr, size_t size)
 	if (arr == NULL || size < 2)
 		return;
 
-	lomuto_sort(arr, size, 0, size - 1);
+	srt(arr, size, 0, size - 1);
 }
